@@ -8,8 +8,6 @@ import io.cucumber.java.en.When;
 import io.cucumber.junit.Cucumber;
 import org.junit.runner.RunWith;
 
-
-
 public class StepDefinition {
 
         @Given("^User is on NetBanking landing page$")
@@ -18,22 +16,20 @@ public class StepDefinition {
                 System.out.println("navigated to login url");
         }
 
-        @When("^User log into app with username and password$")
-        public void user_log_into_app_with_username_and_password()  {
-           //code to login
-                System.out.println("Log in success");
-        }
-
         @Then("^Homepage is populated$")
         public void homepage_is_populated()  {
             //home page validation
                 System.out.println("Validated home page");
         }
-
-        @And("^Cards are displayed$")
-        public void cards_are_displayed()  {
-            //validating the cards
-                System.out.println("Validated cards");
+        @When("^User log into app with username \"([^\"]*)\" and password \"([^\"]*)\"$")
+        public void user_log_into_app_with_username_something_and_password_something(String strArg1, String strArg2)  {
+//write codes to login with different users
+                System.out.println(strArg1);
+                System.out.println(strArg2);
+        }
+        @And("^Cards are displayed \"([^\"]*)\"$")
+        public void cards_are_displayed_something(String strArg1) {
+                System.out.println(strArg1);
         }
 
     }
