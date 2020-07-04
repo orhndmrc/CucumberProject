@@ -7,12 +7,12 @@ import org.junit.runner.RunWith;
  //feature
 @RunWith(Cucumber.class)
 @CucumberOptions(
+        //dryRun = true,---> to figure out whether steps mappep to step definitions.
         features = "src/test/java/features",
         glue = "stepDefs",
-        plugin = {"pretty","html:target/cucumber.html","json:target/cucumber.json"}//gives us a report under target file
-
+        tags = "@smoke or @regression or @mobile",
+        plugin = {"pretty","html:target/cucumber.html","json:target/cucumber.json","junit:target/cukes.xml"}//gives us a report under target file
 
 )
-
 public class Test_Runner {
 }

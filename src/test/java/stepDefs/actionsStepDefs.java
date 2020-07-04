@@ -35,7 +35,7 @@ public class actionsStepDefs {
             s.selectByValue("option1");
 
         }
-        @And("^User hovers over on \"([^\"]*)\" and click on \"([^\"]*)\" option$")
+        @And("^User hovers over on \"([^\"]*)\" and click on \"([^\"]*)\" option$")  //"([^"]*)\--->Regular Expressions
         public void user_hovers_over_on_something_and_click_on_something_option(String strArg1, String strArg2) throws Throwable {
 
             action = new Actions(driver);
