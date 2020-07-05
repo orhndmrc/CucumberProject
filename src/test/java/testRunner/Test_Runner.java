@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         //dryRun = true,---> to figure out whether steps mappep to step definitions.
         features = "src/test/java/features",
         glue = "stepDefs",
-        tags = "@smoke or @regression or @mobile",
+        tags = "@SeleniumTest",
         plugin = {"pretty","html:target/cucumber.html","json:target/cucumber.json","junit:target/cukes.xml"}//gives us a report under target file
 
 )
