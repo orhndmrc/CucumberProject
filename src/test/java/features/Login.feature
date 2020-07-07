@@ -1,7 +1,5 @@
 Feature: Application Login
 
-
-
 @regression
   Scenario: Home page default login
     Given User is on NetBanking landing page

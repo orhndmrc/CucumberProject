@@ -1,5 +1,5 @@
 Feature: Search and place order for vegetables
-@SeleniumTest
+@SmokeTest
   Scenario: Search for items and validate results
     Given User is on GreenCart landing page
     When User searched for Cucumber Vegetable
