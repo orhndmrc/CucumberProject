@@ -6,11 +6,16 @@ Feature: Search and place order for vegetables
     Then Cucumber results are displayed
 
   @SeleniumTest
-  Scenario: Search for items and then move to checkout page
+  Scenario Outline: Search for items and then move to checkout page
     Given User is on GreenCart landing page
-    When User searched for Brinjal Vegetable
+    When User searched for <Name> Vegetable
     And Added items to cart
     And User proceeded to Checkout page for purchase
-    Then verify selected Brinjal items are displayed in checkout page
+    Then verify selected <Name> items are displayed in checkout page
+
+Examples:
+  |Name     |
+  |Brinjal  |
+  |Beetroot |
 
 

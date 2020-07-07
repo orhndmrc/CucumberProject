@@ -11,39 +11,45 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.CheckOutPage;
+import pageObjects.Homepage;
 import resources.Base;
+
+import java.io.IOException;
 
 
 public class SearchStepDefs {
    public WebDriver driver;
+    Homepage h;
+    CheckOutPage c;
     @Given("^User is on GreenCart landing page$")
-    public void user_is_on_greencart_landing_page()  {
+    public void user_is_on_greencart_landing_page() throws IOException {
         driver=Base.getDriver();
-        driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
     }
-    @When("^User searched for (\\w+) Vegetable$")
+
+    @When("^User searched for (.+) Vegetable$")
     public void user_searched_for_something_vegetable(String fruit)  {
-        driver.findElement(By.xpath("//input[@class='search-keyword']")).sendKeys(fruit);
-        WebDriverWait wait = new WebDriverWait(driver,10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h4.product-name")));
+        h =new Homepage(driver);
+        h.getSearch().sendKeys(fruit);
     }
     @Then("^(\\w+) results are displayed$")
     public void something_results_are_displayed(String fruit)  {
-        Assert.assertTrue(driver.findElement(By.cssSelector("h4.product-name")).getText().contains(fruit));
+        Assert.assertTrue(h.nameValidation().getText().contains(fruit));
     }
-    @Then("^verify selected (\\w+) items are displayed in checkout page$")
+    @Then("^verify selected (.+) items are displayed in checkout page$")
     public void verify_selected_brinjal_items_are_displayed_in_checkout_page(String fruit)  {
-        Assert.assertTrue(driver.findElement(By.cssSelector("p.product-name")).getText().contains(fruit));
+        Assert.assertTrue(h.nameValidation1().getText().contains(fruit));
     }
     @And("^Added items to cart$")
     public void added_items_to_cart()  {
-        driver.findElement(By.cssSelector("a.increment")).click();
-        driver.findElement(By.xpath("//button[text()='ADD TO CART']")).click();
+         c = new CheckOutPage(driver);
+         c.productAmount();
+         c.addingToCart();
     }
     @And("^User proceeded to Checkout page for purchase$")
     public void user_proceeded_to_checkout_page_for_purchase()  {
-        driver.findElement(By.xpath("//a[@class='cart-icon']//img[contains(@class,'')]")).click();
-        driver.findElement(By.xpath("//button[text()='PROCEED TO CHECKOUT']")).click();
+        c.select();
+        c.checkout();
     }
 
 }
